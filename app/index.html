@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app="myApp" >
+<head>
+    <meta charset="utf-8" />
+    <title>Angular Js Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link href="css/cssStyle.css" rel="stylesheet" type="text/css"/>
+    <script src="js/jquery-2.0.3.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+</head>
+<header>
+    <div class="wrap">
+        <!-- logo -->
+        <a href="#!"><img class="logo" src="images/logo.png" /></a>
+
+        <!-- navigation menu -->
+        <nav>
+            <ul>
+                <li><a id="workBtn" href="#!/" ng-class="{activeSmall:part == 'projects'}" >Our Projects</a></li>
+                <li><a id="privacyBtn" href="#!/privacy" ng-class="{activeSmall:part == 'privacy'}">Compare Temperature</a></li>
+                <li><a id="aboutBtn" href="#!/about" ng-class="{activeSmall:part == 'about'}">About</a></li>
+                <li style="margin-right:0px"><a id="contactBtn" class="active" href="javascript: void(0)" ng-click="showForm()">Search</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="paddRow contactRow">
+    <div class="wrap">
+        <div class="head">Search</div>
+        <img class="close" src="images/close.png" ng-click="closeForm()" />
+        <form  class="contactForm" name="form" ng-hide="loaded">
+            <input class="input" required="required" type="text" name="name" placeholder="Country" ng-model="name" />
+        </form>
+
+        <!-- contact us form response messages -->
+        <div ng-show="process" style="text-align:center">
+            <img class="loader" src="images/loader.png" />
+        </div>
+        <div ng-show="success"><p>Your message has been sent, thank you.</p></div>
+    </div>
+</div>
+<div style="position:relative">
+    <div style="width:100%" ng-view ng-animate="{enter: 'view-enter', leave: 'view-leave'}"></div>
+</div>
+
+    <script src="js/app.js"></script>
+</html>
+
+

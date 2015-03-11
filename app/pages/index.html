@@ -1,0 +1,65 @@
+<div style="width:100%">
+    <a class="projectObj" ng-repeat="i in products | filter: name | orderBy: 'name'" ng-href="#!/project/product{{i.id}}" ng-style="{'background-color' : i.color}">
+        <div class="wrap">
+
+            <img class="img" ng-src="images/{{i.src}}" style="width: 200px; height: 150px;"/>
+            <h1 style="float: right">{{i.temp[0]}}'C</h1>
+            <div class="name" style=" vertical-align: middle">{{i.name}}</div>
+        </div>
+    </a>
+    <ng-include src="'pages/footer.html'"></ng-include>
+</div>
+
+<script>
+$('.projectObj').bind('click', function (e) {
+    e.preventDefault();
+    alert("hi");
+    var me = this;
+    var width = $(me).width() / 1.5;
+    $(me).find('.wrap').width($(me).find('.wrap').width());
+
+    $(me).animate({
+        opacity: 0,
+        marginLeft: -width
+    }, 500);
+
+    var delayN = 150;
+    var delayP = 150;
+
+    var nextEl = $(me).nextAll('.projectObj');
+    var prevEl = $(me).prevAll('.projectObj');
+
+    nextEl.each(function (index, elem) {
+        setTimeout(function () {
+            
+            $(elem).find('.wrap').width($(elem).find('.wrap').width());
+
+            $(elem).animate({
+                opacity: 0,
+                marginLeft: -width
+              }, 500, function () {
+            });
+        }, delayN);
+        delayN += 100;
+    });
+
+    prevEl.each(function (index, elem) {
+        setTimeout(function () {
+            $(elem).find('.wrap').width($(elem).find('.wrap').width());
+
+            $(elem).animate({
+                opacity: 0,
+                marginLeft: -width
+              }, 500, function () {
+            });
+        }, delayP);
+        delayP += 100;
+    });
+
+    setTimeout(function () {
+        document.location = $(me).attr('href');
+    },1000)
+
+    return false;
+});
+</script>
