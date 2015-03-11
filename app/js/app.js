@@ -36,6 +36,8 @@ config(['$routeProvider', function($routeProvider) {
     .success(function(response) {
       $scope.products = response;
     });
+    console.log("hello"+ $scope.products );
+
   $scope.showForm = function() {
     $('.contactRow').slideToggle();
   };
